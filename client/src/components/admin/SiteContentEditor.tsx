@@ -6,7 +6,7 @@ type Props = { setMessage: (message: string) => void };
 type AnyRecord = Record<string, any>;
 const meta = [["identity", "Identity & About", "Hero, about copy, and profile tags", "01"], ["skills", "Skills", "Skill groups and individual tools", "02"], ["journey", "Journey", "Timeline milestones", "03"], ["certifications", "Certifications", "Credentials, issuers, and links", "04"], ["contact", "Contact & Links", "Social destinations and email", "05"]] as const;
 
-function read(item: SiteContentRecord): AnyRecord { try { return JSON.parse(item.value) as AnyRecord; } catch { return {}; } }
+function read(item: SiteContentRecord): AnyRecord { if (item.value && typeof item.value === "object") return item.value as AnyRecord; try { return JSON.parse(item.value) as AnyRecord; } catch { return {}; } }
 function setValue(items: SiteContentRecord[], key: string, value: AnyRecord) { return items.map((item) => item.key === key ? { ...item, value: JSON.stringify(value, null, 2) } : item); }
 
 export default function SiteContentEditor({ setMessage }: Props) {
