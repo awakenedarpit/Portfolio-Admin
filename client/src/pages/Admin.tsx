@@ -38,14 +38,14 @@ export default function Admin() {
   async function signIn(event: React.FormEvent) {
     event.preventDefault(); if (!supabase) return;
     setSigningIn(true); setMessage("");
-    const result = isCreating ? await supabase.auth.signUp({ email, password, options: { emailRedirectTo: `${window.location.origin}/admin` } }) : await supabase.auth.signInWithPassword({ email, password });
+    const result = isCreating ? await supabase.auth.signUp({ email, password, options: { emailRedirectTo: `${window.location.origin}${window.location.pathname}` } }) : await supabase.auth.signInWithPassword({ email, password });
     setSigningIn(false);
     if (result.error) setMessage(result.error.message);
     else setMessage(isCreating ? "Account created. Check your email if confirmation is required, then sign in." : "");
   }
   async function resetPassword() {
     if (!supabase || !email) { setMessage("Enter your admin email first, then choose reset password."); return; }
-    const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/admin` });
+    const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}${window.location.pathname}` });
     setMessage(error ? error.message : "Password reset instructions sent to your email.");
   }
   function update(index: number, patch: Partial<ProjectRecord>) { setItems((current) => current.map((item, i) => i === index ? { ...item, ...patch } : item)); }
