@@ -68,7 +68,7 @@ export type SiteContentRecord = { key: string; label: string; value: string };
 
 export function getFallbackSiteContent(): SiteContentRecord[] {
   return [
-    { key: "identity", label: "Identity & About", value: JSON.stringify({ hero: "Building ideas into experiences.", bio: "I am Arpit Raj — a BTech AI/ML student, developer, and builder.", tags: ["AI/ML", "Development", "Learning", "Building"] }, null, 2) },
+    { key: "identity", label: "Identity & About", value: JSON.stringify({ hero: "Building ideas into experiences.", bio: "I am Arpit Raj — a BTech AI/ML student, developer, and builder.", about: "I am currently building my foundations in AI/ML and web development, while looking for the details that make an experience feel clear, human, and worth returning to.", tags: ["AI/ML", "Development", "Learning", "Building", "Experimenting"] }, null, 2) },
     { key: "skills", label: "Skills", value: JSON.stringify({ groups: [{ label: "01", title: "Programming", items: ["Python", "C", "C++", "JavaScript", "TypeScript"] }] }, null, 2) },
     { key: "journey", label: "Journey", value: JSON.stringify({ entries: [{ year: "2025", title: "Building & experimenting", text: "Trying ideas in public." }, { year: "Now", title: "BTech AI / ML", text: "Learning fundamentals and building systems." }] }, null, 2) },
     { key: "certifications", label: "Certifications", value: JSON.stringify({ entries: [] }, null, 2) },
