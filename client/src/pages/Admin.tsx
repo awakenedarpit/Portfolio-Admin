@@ -70,7 +70,9 @@ export default function Admin() {
   function update(index: number, patch: Partial<ProjectRecord>) { setItems((current) => current.map((item, i) => i === index ? { ...item, ...patch } : item)); }
   function openEditor(id: string, label: string, status: string) {
     if (status !== "LIVE") { setMessage(`${label} is source-backed. Edit content.ts for now.`); return; }
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const targetId = id === "hackathons" ? "showcase-editor" : id === "journal" ? "journal-editor" : id;
+    const target = ["hackathons", "journal"].includes(id) ? document.getElementById(targetId) : document.querySelector(`#site-content #${targetId}`);
+    target?.scrollIntoView({ behavior: "smooth", block: "start" });
     setMessage(`Opened the ${label} editor.`);
   }
   async function save(index: number) {
